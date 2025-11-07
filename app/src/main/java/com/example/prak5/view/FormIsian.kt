@@ -2,6 +2,7 @@ package com.example.prak5.view
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Button
 import androidx.compose.foundation.background
 import androidx.compose.foundation.content.MediaType.Companion.Text
 import androidx.compose.foundation.layout.Arrangement
@@ -13,6 +14,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
@@ -25,6 +28,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.material3.Text
 import androidx.compose.ui.input.pointer.PointerIcon.Companion.Text
+import androidx.compose.ui.semantics.Role.Companion.Button
 import androidx.compose.ui.semantics.SemanticsProperties.Text
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType.Companion.Text
@@ -40,6 +44,7 @@ fun FormPendaftaran(
     var textAlamat by remember { mutableStateOf("") }
     var textJK by remember { mutableStateOf("") }
     var textStatus by remember { mutableStateOf("") }
+    var showDialog by remember { mutableStateOf(false) }
 
     val genderList = listOf("Laki-laki", "Perempuan")
     val statusList = listOf("Janda", "Lajang", "Duda")
@@ -166,7 +171,25 @@ fun FormPendaftaran(
                 )
                 Spacer(modifier= Modifier.height(16.dp))
 
-
+                Button(
+                    onClick = { showDialog = true },
+                    enabled = textNama.isNotEmpty() &&
+                            textJK.isNotEmpty() &&
+                            textStatus.isNotEmpty() &&
+                            textAlamat.isNotEmpty(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp),
+                    shape = RoundedCornerShape(25.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = purpleButton)
+                ) {
+                    Text(
+                        text = "Submit",
+                        color = Color.White,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
             }
         }
     }
