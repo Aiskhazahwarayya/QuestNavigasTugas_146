@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.cn.view.WelcomeScreen
+import com.example.prak5.view.TampilData
 
 enum class Halaman {
     Welcome,
@@ -32,5 +33,22 @@ fun DataApp(
                 }
             )
         }
+        composable(route = Halaman.TampilData.name) {
+            TampilData(
+                namaLengkap = "Aiskha",
+                jenisKelamin = "Perempuan",
+                statusPerkawinan = "Lajang",
+                alamat = "Bekasi",
+                onBerandaClick = {
+                    navController.navigate(Halaman.Welcome.name) {
+                        popUpTo(Halaman.Welcome.name) { inclusive = true }
+                    }
+                },
+                onFormulirClick = {
+                    navController.navigate(Halaman.FormPendaftaran.name)
+                }
+            )
+        }
+
     }
 }
