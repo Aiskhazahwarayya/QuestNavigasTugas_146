@@ -17,7 +17,6 @@ enum class Halaman {
     FormPendaftaran
 }
 
-
 @Composable
 fun DataApp(
     navController: NavHostController = rememberNavController(),
@@ -89,6 +88,5 @@ fun DataApp(
                 }
             )
         }
-
     }
 }
