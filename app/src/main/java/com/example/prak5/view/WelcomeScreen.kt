@@ -2,6 +2,8 @@ package com.example.cn.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -77,6 +79,41 @@ fun WelcomeScreen(
                 fontWeight = FontWeight.Bold,
                 color = colorDeepPurple
             )
+        }
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(bottom = 60.dp)
+        ) {
+            Text(
+                text = "Aiskha Zahwa Rayya",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Normal,
+                color = colorPurple700
+            )
+
+            Text(
+                text = "20230140146",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Light,
+                color = colorPurple700,
+                modifier = Modifier.padding(bottom = 24.dp)
+            )
+            Button(
+                onClick = onSubmitClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 32.dp)
+                    .height(50.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = colorDeepPurple
+                )
+            ) {
+                Text(
+                    text = "Submit",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
         }
     }
 }
