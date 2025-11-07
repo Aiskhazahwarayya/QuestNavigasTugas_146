@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.cn.view.WelcomeScreen
+import com.example.prak5.view.FormPendaftaran
 import com.example.prak5.view.TampilData
 
 enum class Halaman {
@@ -49,6 +50,14 @@ fun DataApp(
                 }
             )
         }
-
+        composable(route = Halaman.FormPendaftaran.name) {
+            FormPendaftaran(
+                onSubmitClick = { nama, jk, status, alamat ->
+                    navController.navigate(
+                        "${Halaman.TampilData.name}/$nama/$jk/$status/$alamat"
+                    )
+                }
+            )
+        }
     }
 }
