@@ -148,6 +148,25 @@ fun TampilData(
 
                 Spacer(modifier = Modifier.height(12.dp))
 
+                Button(
+                    onClick = onFormulirClick,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(56.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = LightPurple.copy(alpha = 0.6f)
+                    ),
+                    shape = MaterialTheme.shapes.medium
+                ) {
+                    Text(
+                        text = "Formulir Pendaftaran",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = DeepPurple
+                    )
+                }
+
+
             }
         }
     }
