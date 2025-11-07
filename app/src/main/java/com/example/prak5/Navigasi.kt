@@ -50,15 +50,16 @@ fun DataApp(
                 }
             )
         }
+
+
         composable(route = Halaman.FormPendaftaran.name) {
             FormPendaftaran(
-                onSubmitClick = { nama, jk, status, alamat ->
-                    navController.navigate(
-                        "${Halaman.TampilData.name}/$nama/$jk/$status/$alamat"
-                    )
+                onSubmitClick = {
+                    navController.navigate(Halaman.TampilData.name)
                 }
             )
         }
+
         composable(
             route = "${Halaman.TampilData.name}/{nama}/{jk}/{status}/{alamat}",
             arguments = listOf(

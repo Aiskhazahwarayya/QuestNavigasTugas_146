@@ -40,7 +40,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun FormPendaftaran(
     modifier: Modifier = Modifier,
-    onSubmitClick: (String, String, String, String) -> Unit
+    onSubmitClick: () -> Unit
 ) {
     var textNama by remember { mutableStateOf("") }
     var textAlamat by remember { mutableStateOf("") }
@@ -79,139 +79,146 @@ fun FormPendaftaran(
                     .padding(start = 20.dp, top = 16.dp)
             )
         }
-    }
-    Column(
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        ElevatedCard(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            shape = MaterialTheme.shapes.large,
-            colors = CardDefaults.cardColors(containerColor = Color.White),
-            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+                .padding(16.dp)
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column(
+            ElevatedCard(
                 modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                shape = MaterialTheme.shapes.large,
+                colors = CardDefaults.cardColors(containerColor = Color.White),
+                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
             ) {
-                Text(
-                    text = "NAMA LENGKAP",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.SemiBold
-                )
-                OutlinedTextField(
-                    value = textNama,
-                    onValueChange = { textNama = it },
-                    placeholder = { Text("Isikan nama lengkap") },
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Text(
-                    text = "JENIS KELAMIN",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.SemiBold
-                )
-                genderList.forEach { item ->
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .selectable(
+                Column(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    Text(
+                        text = "NAMA LENGKAP",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    OutlinedTextField(
+                        value = textNama,
+                        onValueChange = { textNama = it },
+                        placeholder = { Text("Isikan nama lengkap") },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Text(
+                        text = "JENIS KELAMIN",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    genderList.forEach { item ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .selectable(
+                                    selected = (textJK == item),
+                                    onClick = { textJK = item }
+                                )
+                                .padding(vertical = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(
                                 selected = (textJK == item),
                                 onClick = { textJK = item }
                             )
-                            .padding(vertical = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        RadioButton(
-                            selected = (textJK == item),
-                            onClick = { textJK = item }
-                        )
-                        Text(text = item)
+                            Text(text = item)
+                        }
                     }
-                }
-                Text(
-                    text = "STATUS PERKAWINAN",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.SemiBold
-                )
-                statusList.forEach { item ->
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .selectable(
+                    Text(
+                        text = "STATUS PERKAWINAN",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                    statusList.forEach { item ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .selectable(
+                                    selected = (textStatus == item),
+                                    onClick = { textStatus = item }
+                                )
+                                .padding(vertical = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(
                                 selected = (textStatus == item),
                                 onClick = { textStatus = item }
                             )
-                            .padding(vertical = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        RadioButton(
-                            selected = (textStatus == item),
-                            onClick = { textStatus = item }
-                        )
-                        Text(text = item)
+                            Text(text = item)
+                        }
                     }
-                }
-                Text(
-                    text = "ALAMAT",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.SemiBold
-                )
-                OutlinedTextField(
-                    value = textAlamat,
-                    onValueChange = { textAlamat = it },
-                    placeholder = { Text("Alamat lengkap") },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(60.dp)
-                )
-                Spacer(modifier= Modifier.height(16.dp))
-
-                Button(
-                    onClick = { showDialog = true },
-                    enabled = textNama.isNotEmpty() &&
-                            textJK.isNotEmpty() &&
-                            textStatus.isNotEmpty() &&
-                            textAlamat.isNotEmpty(),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp),
-                    shape = RoundedCornerShape(25.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = purpleButton)
-                ) {
                     Text(
-                        text = "Submit",
-                        color = Color.White,
+                        text = "ALAMAT",
                         fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.SemiBold
                     )
+                    OutlinedTextField(
+                        value = textAlamat,
+                        onValueChange = { textAlamat = it },
+                        placeholder = { Text("Alamat lengkap") },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(60.dp)
+                    )
+                    Spacer(modifier= Modifier.height(16.dp))
+
+                    Button(
+                        onClick = { showDialog = true },
+                        enabled = textNama.isNotEmpty() &&
+                                textJK.isNotEmpty() &&
+                                textStatus.isNotEmpty() &&
+                                textAlamat.isNotEmpty(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
+                        shape = RoundedCornerShape(25.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = purpleButton)
+                    ) {
+                        Text(
+                            text = "Submit",
+                            color = Color.White,
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                 }
             }
-        }
-        if (showDialog) {
-            AlertDialog(
-                onDismissRequest = { showDialog = false },
-                confirmButton = {
-                    TextButton(onClick = { showDialog = false }) {
-                        Text("Tutup", color = purpleButton)
+            if (showDialog) {
+                AlertDialog(
+                    onDismissRequest = { showDialog = false },
+                    confirmButton = {
+                        TextButton(
+                            onClick = {
+                                showDialog = false // tutup dialog
+                                // navigasi ke TampilData setelah dialog ditutup
+                                onSubmitClick()
+
+                            }
+                        ) {
+                            Text("Tutup", color = purpleButton)
+                        }
+                    },
+                    title = { Text("Data Pendaftaran") },
+                    text = {
+                        Column {
+                            Text("Nama: $textNama")
+                            Text("Jenis Kelamin: $textJK")
+                            Text("Status: $textStatus")
+                            Text("Alamat: $textAlamat")
+                        }
                     }
-                },
-                title = { Text("Data Pendaftaran") },
-                text = {
-                    Column {
-                        Text("Nama: $textNama")
-                        Text("Jenis Kelamin: $textJK")
-                        Text("Status: $textStatus")
-                        Text("Alamat: $textAlamat")
-                    }
-                }
-            )
+                )
+            }
         }
     }
 }
