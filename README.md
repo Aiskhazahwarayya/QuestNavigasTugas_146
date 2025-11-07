@@ -2,7 +2,7 @@ nama : Aiskha Zahwa Rayya
 Kelas : C
 NIM : 20230140146
 
-<img width="1080" height="2400" alt="welcome" src="https://github.com/user-attachments/assets/8cfd5fb9-57d7-4fb7-8ffd-693d55a13c4b" />
+<img width="1080" height="2400" alt="Screenshot_20251107_223741" src="https://github.com/user-attachments/assets/58503bde-eec2-4f42-9421-c5b0eda091ac" />
 
 <img width="1080" height="2400" alt="List" src="https://github.com/user-attachments/assets/a8ddd0ec-e2b0-46ec-a708-b7111a1ffb04" />
 
