@@ -1,5 +1,6 @@
 package com.example.prak5.view
 
+import androidx.compose.material3.AlertDialog
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Button
@@ -27,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.ui.input.pointer.PointerIcon.Companion.Text
 import androidx.compose.ui.semantics.Role.Companion.Button
 import androidx.compose.ui.semantics.SemanticsProperties.Text
@@ -190,9 +192,26 @@ fun FormPendaftaran(
                         fontWeight = FontWeight.Bold
                     )
                 }
-
-
             }
+        }
+        if (showDialog) {
+            AlertDialog(
+                onDismissRequest = { showDialog = false },
+                confirmButton = {
+                    TextButton(onClick = { showDialog = false }) {
+                        Text("Tutup", color = purpleButton)
+                    }
+                },
+                title = { Text("Data Pendaftaran") },
+                text = {
+                    Column {
+                        Text("Nama: $textNama")
+                        Text("Jenis Kelamin: $textJK")
+                        Text("Status: $textStatus")
+                        Text("Alamat: $textAlamat")
+                    }
+                }
+            )
         }
     }
 }
